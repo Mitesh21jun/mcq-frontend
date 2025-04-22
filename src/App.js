@@ -30,7 +30,7 @@ export default function App() {
     setRevealedAnswers({});
 
     try {
-      const response = await axios.post('http://localhost:5000/api/upload', formData, {
+      const response = await axios.post('http://ec2-13-127-114-93.ap-south-1.compute.amazonaws.com:5000/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
