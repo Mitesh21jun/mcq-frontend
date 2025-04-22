@@ -1,0 +1,128 @@
+/* App.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f1f2f6, #dff9fb);
+  color: #2f3640;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #0984e3;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin: 1.5rem 0 1rem;
+  color: #00b894;
+}
+
+.file-input {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border: 2px dashed #74b9ff;
+  background: #dfe6e9;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.upload-button {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: white;
+  background-color: #0984e3;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-button:disabled {
+  background-color: #b2bec3;
+  cursor: not-allowed;
+}
+
+.upload-button:hover:not(:disabled) {
+  background-color: #74b9ff;
+}
+
+.error-message {
+  color: #d63031;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mcq-container {
+  margin-top: 2rem;
+}
+
+.mcq-list {
+  list-style: none;
+  padding: 0;
+}
+
+.mcq-item {
+  margin-bottom: 2rem;
+}
+
+.question {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.options {
+  list-style: none;
+  padding: 0;
+}
+
+.option {
+  padding: 0.75rem;
+  margin: 0.4rem 0;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #dfe6e9;
+  background-color: #f5f6fa;
+  transition: all 0.3s ease;
+}
+
+.option:hover {
+  background-color: #dcdde1;
+}
+
+.correct {
+  background-color: #55efc4;
+  color: #2d3436;
+  border: 1px solid #00b894;
+}
+
+.wrong {
+  background-color: #fab1a0;
+  color: #2d3436;
+  border: 1px solid #d63031;
+}
+
+.button-style {
+  font-size: 1rem;
+  font-weight: 500;
+}
