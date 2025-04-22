@@ -1,70 +1,88 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# AI MCQ Generator - Frontend
 
-## Available Scripts
+This is the frontend of the AI-powered MCQ generator app built using React. The app allows users to upload PDF or image files, which are then processed to generate multiple-choice questions (MCQs).
 
-In the project directory, you can run:
+## Features
+- Upload PDF or image files.
+- Display generated MCQs with options.
+- Interactive MCQs where users can select options.
+- Real-time feedback on correct or wrong answers.
+- Display errors for invalid file uploads.
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ensure you have the following installed:
+- Node.js (v14 or higher)
+- npm (v6 or higher) or yarn (optional)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### 1. Clone the Repository
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone the repository to your local machine:
 
-### `npm run build`
+```bash
+git clone https://github.com/mitesh21jun/mcq-frontend.git
+cd mcq-frontend
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. Install Dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Run the following command to install all the required dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+or if you prefer using `yarn`:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+yarn install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 3. Running the Development Server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+After the dependencies are installed, start the development server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
+or if using `yarn`:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+yarn start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This will start the app on [http://localhost:3000](http://localhost:3000) by default.
 
-### Code Splitting
+### 4. Upload Files
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- You can upload PDF or image files.
+- The backend API should be running on [http://localhost:5000/api/upload](http://localhost:5000/api/upload) for file processing and MCQ generation.
+- Once a file is uploaded, the app will display generated MCQs based on the file content.
 
-### Analyzing the Bundle Size
+### 5. Error Handling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+If there are issues with file uploading or any error from the backend, it will be displayed in the form of an error message.
 
-### Making a Progressive Web App
+## Built With
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- React (v17+)
+- Axios for HTTP requests
+- CSS for styling
 
-### Advanced Configuration
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+To deploy the app, you can build the production-ready static files using:
 
-### Deployment
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+This will create a `build/` directory that contains the static files for deployment. You can then deploy it to services like Vercel, Netlify, or any static hosting service.
 
-### `npm run build` fails to minify
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
