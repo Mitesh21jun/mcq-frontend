@@ -92,21 +92,25 @@ export default function App() {
                   <p className="question">Q{index + 1}: {item.question}</p>
                   <ul className="options">
                     {item.options.map((opt, i) => {
-                      const label = opt.slice(0, 2);
+                      const label = opt.slice(0, 2); // e.g., "A."
                       const selected = selectedAnswers[index];
-                      const isCorrect = label[0] === item.answer;
-                      let optionClass = '';
+                      const correctAnswer = item.answer;
+                      const isSelected = selected === label[0];
+                      const isCorrect = label[0] === correctAnswer;
+
+                      let optionClass = 'option button-style';
                       if (revealedAnswers[index]) {
-                        if (label[0] === selected) {
-                          optionClass = isCorrect ? 'correct' : 'wrong';
+                        if (isSelected) {
+                          optionClass += isCorrect ? ' correct' : ' wrong';
                         } else if (isCorrect) {
-                          optionClass = 'correct';
+                          optionClass += ' correct';
                         }
                       }
+
                       return (
                         <li
                           key={i}
-                          className={`option button-style ${optionClass}`}
+                          className={optionClass}
                           onClick={() => handleOptionClick(index, label[0])}
                         >
                           {opt}
