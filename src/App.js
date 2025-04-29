@@ -9,17 +9,23 @@ export default function App() {
   const [error, setError] = useState('');
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [revealedAnswers, setRevealedAnswers] = useState({});
+  const [uploadCount, setUploadCount] = useState(0); // Force re-render
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const newFile = e.target.files[0];
+    if (!newFile) return;
+
+    setFile(newFile);
     setMcqs([]);
     setError('');
     setSelectedAnswers({});
     setRevealedAnswers({});
+    setUploadCount((prev) => prev + 1); // Force full refresh of MCQ section
   };
 
   const handleUpload = async () => {
     if (!file) return;
+
     const formData = new FormData();
     formData.append('file', file);
 
@@ -62,7 +68,7 @@ export default function App() {
   };
 
   return (
-    <div className="app-container stylish-bg">
+    <div className="app-container stylish-bg" key={uploadCount}>
       <div className="upload-box card">
         <h1 className="title">📚 AI MCQ Generator</h1>
 
@@ -92,7 +98,7 @@ export default function App() {
                   <p className="question">Q{index + 1}: {item.question}</p>
                   <ul className="options">
                     {item.options.map((opt, i) => {
-                      const label = opt.slice(0, 2); // e.g., "A."
+                      const label = opt.slice(0, 2); // "A."
                       const selected = selectedAnswers[index];
                       const correctAnswer = item.answer;
                       const isSelected = selected === label[0];
