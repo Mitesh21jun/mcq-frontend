@@ -1,4 +1,4 @@
-/* App.css */
+App.css
 
 body {
   margin: 0;
@@ -125,4 +125,15 @@ body {
 .button-style {
   font-size: 1rem;
   font-weight: 500;
+}
+.option.correct {
+  background-color: #55efc4;
+  color: #2d3436;
+  border: 1px solid #00b894;
+}
+
+.option.wrong {
+  background-color: #fab1a0;
+  color: #2d3436;
+  border: 1px solid #d63031;
 }

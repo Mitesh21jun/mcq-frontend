@@ -68,11 +68,3 @@
   padding: 5px 10px;
   cursor: pointer;
 }
-
-.option.correct {
-  color: green;
-}
-
-.option.wrong {
-  color: red;
-}
