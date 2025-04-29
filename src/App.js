@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './App.css';
+import React, { useState } from "react";
+import axios from "axios";
+import "./App.css";
 
 export default function App() {
   const [file, setFile] = useState(null);
   const [mcqs, setMcqs] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [revealedAnswers, setRevealedAnswers] = useState({});
-  const [uploadCount, setUploadCount] = useState(0); // Force re-render
 
   const handleFileChange = (e) => {
     const newFile = e.target.files[0];
@@ -17,38 +16,42 @@ export default function App() {
 
     setFile(newFile);
     setMcqs([]);
-    setError('');
+    setError("");
     setSelectedAnswers({});
     setRevealedAnswers({});
-    setUploadCount((prev) => prev + 1); // Force full refresh of MCQ section
+
   };
 
   const handleUpload = async () => {
     if (!file) return;
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
 
     setLoading(true);
-    setError('');
+    setError("");
     setMcqs([]);
     setSelectedAnswers({});
     setRevealedAnswers({});
 
     try {
-      const response = await axios.post('http://15.206.75.86:5000/api/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.post(
+        "http://15.206.75.86:5000/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       const result = response.data;
       if (result.mcqs && Array.isArray(result.mcqs)) {
         setMcqs(result.mcqs);
       } else {
-        setError('Unexpected response format.');
+        setError("Unexpected response format.");
       }
     } catch (err) {
-      setError(err.response?.data?.error || 'An error occurred');
+      setError(err.response?.data?.error || "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -68,7 +71,7 @@ export default function App() {
   };
 
   return (
-    <div className="app-container stylish-bg" key={uploadCount}>
+    <div className="app-container stylish-bg">
       <div className="upload-box card">
         <h1 className="title">📚 AI MCQ Generator</h1>
 
@@ -84,7 +87,7 @@ export default function App() {
           disabled={!file || loading}
           className="upload-button"
         >
-          {loading ? 'Processing...' : 'Upload & Generate'}
+          {loading ? "Processing..." : "Upload & Generate"}
         </button>
 
         {error && <div className="error-message">❌ {error}</div>}
@@ -95,28 +98,31 @@ export default function App() {
             <ul className="mcq-list">
               {mcqs.map((item, index) => (
                 <li key={index} className="mcq-item">
-                  <p className="question">Q{index + 1}: {item.question}</p>
+                  <p className="question">
+                    Q{index + 1}: {item.question}
+                  </p>
                   <ul className="options">
                     {item.options.map((opt, i) => {
-                      const label = opt.slice(0, 2); // "A."
+                      const label = opt.slice(0, 2);
                       const selected = selectedAnswers[index];
-                      const correctAnswer = item.answer;
-                      const isSelected = selected === label[0];
-                      const isCorrect = label[0] === correctAnswer;
+                      const isSelected = label[0] === selected;
+                      const isCorrect = label[0] === item.answer;
 
-                      let optionClass = 'option button-style';
+                      let optionClass = "";
                       if (revealedAnswers[index]) {
-                        if (isSelected) {
-                          optionClass += isCorrect ? ' correct' : ' wrong';
-                        } else if (isCorrect) {
-                          optionClass += ' correct';
+                        if (isSelected && isCorrect) {
+                          optionClass = "correct";
+                        } else if (isSelected && !isCorrect) {
+                          optionClass = "wrong";
+                        } else if (!isSelected && isCorrect) {
+                          optionClass = "correct";
                         }
                       }
 
                       return (
                         <li
                           key={i}
-                          className={optionClass}
+                          className={`option button-style ${optionClass}`}
                           onClick={() => handleOptionClick(index, label[0])}
                         >
                           {opt}
